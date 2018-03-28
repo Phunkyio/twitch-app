@@ -1,0 +1,38 @@
+html, body {
+  height: 100%;
+}
+
+.streamerDescription {
+  display: table-cell;
+  min-height: 40%;
+  padding: 2% 0 2% 0;
+  text-align: center;
+}
+
+.streamerDisplay {
+  background: lightgreen;
+  display: table-row;
+}
+
+.streamerDisplay:nth-child(even) {
+  background: lightblue;
+}
+
+.streamerProfile {
+  display: table-cell;
+  padding: 2% 0 2% 0;
+  text-align: center;
+  width: 25%;
+}
+
+.streamerProfile img {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
+.streamerTable {
+  display: table;
+  margin: 0 5% 0 5%;
+  /* height: 100%; */
+}
