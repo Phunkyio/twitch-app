@@ -38,7 +38,11 @@ window.onload = function() {
       testData(data, status);
       if (data.stream != null) {
         displayStreamer(data);
-      } else {}
+      } else {
+        alert('Error: Streamer not found or is offline.');
+        // TODO: add display for streamer not found error
+        // TODO: find a way to show search results for streamers
+      }
     });
 
   }
