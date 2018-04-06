@@ -1,16 +1,14 @@
 var streamerList = [];
 var streamerData, streamerStatus;
-streamerList.push('streamerhouse');
-streamerList.push('burkeblack');
-streamerList.push('summit1g');
 
-function addStreamer(){
+function addStreamer() {
   var inputStreamer = $('#inputStreamer').val();
   console.log(inputStreamer);
-  $.get("https://wind-bow.glitch.me/twitch-api/streams/" + inputStreamer, function(data,status){
+  $.get("https://wind-bow.glitch.me/twitch-api/streams/" + inputStreamer, function(data, status) {
     if (data.stream != null) {
       displayStreamer(data);
     } else {
+      alert('Error: Streamer not found or is offline.');
       console.log("no stream data");
     }
   });
@@ -49,7 +47,7 @@ window.onload = function() {
 };
 
 //handlers
-$('#addStreamer').click(function(){
+$('#addStreamer').click(function() {
   addStreamer();
   // var inputStreamer = $('#inputStreamer').val();
   // console.log(inputStreamer);
@@ -62,8 +60,8 @@ $('#addStreamer').click(function(){
   // });
 });
 
-$('#inputStreamer').keypress(function(e){
-  if(e.keyCode == 13){
+$('#inputStreamer').keypress(function(e) {
+  if (e.keyCode == 13) {
     addStreamer();
   }
 });
