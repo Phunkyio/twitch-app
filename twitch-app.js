@@ -4,6 +4,7 @@ var streamerData, streamerStatus;
 function addStreamer() {
   var inputStreamer = $('#inputStreamer').val();
   console.log(inputStreamer);
+    $('#inputStreamer').val('');
   $.get("https://wind-bow.glitch.me/twitch-api/streams/" + inputStreamer, function(data, status) {
     if (data.stream != null) {
       displayStreamer(data);
