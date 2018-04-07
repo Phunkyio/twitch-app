@@ -3,14 +3,19 @@ var streamerData, streamerStatus;
 
 function addStreamer() {
   var inputStreamer = $('#inputStreamer').val();
+  streamerList.push(inputStreamer);
+  // TODO: Purge invalid Twitch IDs.
   console.log(inputStreamer);
-    $('#inputStreamer').val('');
+  console.log("Streamer list updated: ");
+  console.log(streamerList);
+  $('#inputStreamer').val('');
   $.get("https://wind-bow.glitch.me/twitch-api/streams/" + inputStreamer, function(data, status) {
     if (data.stream != null) {
       displayStreamer(data);
     } else {
-      alert('Error: Streamer not found or is offline.');
+      console.log('Error: Streamer not found or is offline.');
       console.log("no stream data");
+
     }
   });
 }
@@ -27,24 +32,34 @@ function displayStreamer(data) {
   $(".streamerTable").append(display);
 }
 
-//onload
-window.onload = function() {
-  //GET  https://wind-bow.glitch.me/twitch-api/streams/burkeblack
-
-
+function displayStreamerList() {
   for (var c = 0; c < streamerList.length; c++) {
     $.get("https://wind-bow.glitch.me/twitch-api/streams/" + streamerList[c], function(data, status) {
       testData(data, status);
       if (data.stream != null) {
         displayStreamer(data);
       } else {
-        alert('Error: Streamer not found or is offline.');
+        console.log('Error: Streamer not found or is offline.');
         // TODO: add display for streamer not found error
         // TODO: find a way to show search results for streamers
       }
     });
 
   }
+}
+
+function streamerDisplayRefresh() {
+  $(".streamerTable").empty();
+  console.log("Streamer Table emptied.");
+  displayStreamerList();
+  console.log("Displaying Streamer List:");
+  console.log(streamerList);
+}
+
+//onload
+window.onload = function() {
+  //GET  https://wind-bow.glitch.me/twitch-api/streams/burkeblack
+  displayStreamerList();
 };
 
 //handlers
@@ -66,3 +81,7 @@ $('#inputStreamer').keypress(function(e) {
     addStreamer();
   }
 });
+
+$("#refreshStreamerList").click(function() {
+  streamerDisplayRefresh();
+})
