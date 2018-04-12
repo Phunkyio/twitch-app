@@ -27,7 +27,7 @@ function testData(data, status) {
 }
 
 function displayStreamer(data) {
-  var display = "<div class='streamerDisplay'><div class='streamerProfile'><img src='" + data.stream.channel.logo + "' /><br /><span>" + data.stream.channel.display_name + "</span></div><div class='streamerDescription'><span>" + data.stream.channel.status + "</span></div></div></div>";
+  var display = "<div class='streamerDisplay'><div class='streamerProfile'><a href="+data.stream.channel.url+"><img src='" + data.stream.channel.logo + "' /></a><br /><span>" + data.stream.channel.display_name + "(" + data.stream.channel.broadcaster_language + ")</span></div><div class='streamerDescription'><div><img src=" + data.stream.preview.medium + "/></div><div>" + data.stream.channel.status + "</div><div>" + data.stream.game + "</div><div>" + data.stream.viewers + " viewers</div></div></div></div>";
 
   $(".streamerTable").append(display);
 }
